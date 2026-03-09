@@ -23,16 +23,24 @@ jobs:
         python -m pip install --upgrade pip
         pip install numpy scipy mpmath matplotlib
 
-    - name: Compile TeX and Data
+    - name: Generate Data and Figures
+      run: |
+        make data
+        make figures
+
+    - name: Prepare Paper Assets
+      run: |
+        cd paper
+        cp ../figures/*.pdf .
+        cp ../src/zeta.py ../rc_zeta_listing.py
+        cp ../src/sigma_engine.py ../rc_sigma_listing.py
+        cp ../src/main.py ../rc_main_listing.py
+
+    - name: Compile TeX
       uses: xu-cheng/latex-action@v3
       with:
         root_file: Computational_Tensegrity_Wallace_2026.tex
         working_directory: paper
-        pre_compile: |
-          cd ..
-          make data
-          make figures
-          make paper
 
     - name: Upload PDF artifact
       uses: actions/upload-artifact@v4
