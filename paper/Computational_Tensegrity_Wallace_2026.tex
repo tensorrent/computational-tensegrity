@@ -81,9 +81,13 @@ The root cause common to all failure modes is data-dependent normalisation.  Ful
 \section{Introduction}\label{sec:intro}
 %% ═══════════════════════════════════════════════════════
 
-Consider eight observers positioned around a regular octagonal solid, each viewing a single face bearing a distinct coloured geometric shape.  Each observation is locally accurate.  Each inference about the whole object is globally incorrect.  The failure is neither perceptual nor analytical; it is topological.  The inter-observer communication graph contains zero edges, rendering the algebraic connectivity identically zero.  No refinement of local measurement precision can compensate for the absence of global coupling.
+Consider eight observers positioned around a regular octagonal solid.  In a formal demonstration of structural blindness---the \emph{Octagon Protocol}---eight participants (the observers) are arranged in a circle, facing inwards.  A ninth participant (the oversight) stands outside the circle.  Each observer is handed an envelope containing a single coloured geometric shape (e.g., a red triangle, a blue square).
 
-This scenario---hereafter the \emph{Octagon Problem}---encapsulates a structural failure mode that recurs across disparate domains.  In floating-point arithmetic, individually bounded rounding errors compound through nonlinear operations to cross decision thresholds.  In institutional governance, departmental accuracy coexists with system-level incoherence.  In coupled oscillator networks, per-mode stability masks catastrophic inter-mode energy transfer.  In discrete rewriting systems, locally well-formed rules produce progressive global spectral degradation.  In every instance: \emph{local acceptability coexists with global divergence}.
+The protocol proceeds in three phases.  \textbf{Phase 1 (Observation):} Participants open their envelopes in secret and observe their local state.  \textbf{Phase 2 (Inference):} The oversight asks a single, constrained prompt to the group: ``Describe the entirety of the shape.''  \textbf{Phase 3 (Reveal):} Participants verbally describe what they hold.  Because the observers have no communication edges (zero algebraic connectivity), each participant assumes their local observation \emph{is} the global reality.  They argue over whether the ``shape'' is a red triangle or a blue square.  The oversight participant, viewing the entire structure from the outside, sees that the participants collectively form the faces of an octagonal prism.
+
+Each observation is locally accurate.  Each inference about the whole object is globally incorrect.  The failure is neither perceptual nor analytical; it is topological.  The inter-observer communication graph contains zero edges, rendering the algebraic connectivity identically zero.  No refinement of local measurement precision can compensate for the absence of global coupling.
+
+This scenario---hereafter the \emph{Octagon Problem}---encapsulates a structural failure mode that recurs across disparate domains.  The components of the demonstration map directly to formal systems engineering: the coloured shapes are the \textbf{variants} (local states that change), the octagonal circle is the \textbf{invariant} (the fixed structural topology), and the requirement that all observers must answer the prompt is the \textbf{constraint}.  In floating-point arithmetic, individually bounded rounding errors compound through nonlinear operations to cross decision thresholds.  In institutional governance, departmental accuracy coexists with system-level incoherence.  In coupled oscillator networks, per-mode stability masks catastrophic inter-mode energy transfer.  In discrete rewriting systems, locally well-formed rules produce progressive global spectral degradation.  In every instance: \emph{local acceptability coexists with global divergence}.
 
 \begin{figure}[t]
 \centering
@@ -145,7 +149,7 @@ Jacobian $J = \left(\begin{smallmatrix} -\beta & -\gamma \\ -\alpha & -\kappa \e
 
 \subsection{Domain Instantiations}
 
-The tensegrity atom maps to every domain examined in this work.  The correspondence is the central claim of the paper; we describe each mapping in full, as the strength of the framework rests on the precision of these identifications.
+The tensegrity atom maps to every domain examined in this work.  The correspondence is the central claim of the paper; we describe each mapping in full, as the strength of the framework rests on the precision of these identifications.  It is important to state explicitly that these mappings are structural analogies and empirical isomorphisms, not strict mathematical conjugacies.  We are demonstrating the universality of a specific \emph{failure mode} across coupled systems, not asserting that floating-point arithmetic and institutional governance share identical state-space topologies under a smooth manifold transformation.
 
 \subsubsection{Governance}
 
@@ -272,16 +276,12 @@ Projecting onto mode $m$ via $q_m = \sum_i \phi_m(i)x_i$ yields the modal equati
 \end{equation}
 where $\Gamma_{mjkl} = \sum_i \phi_m(i)\phi_j(i)\phi_k(i)\phi_l(i)$ is the eigenvector overlap integral and $f_m = \sum_i \phi_m(i) F_i$.
 
-The dominant self-interaction term is $\Gamma_{mmmm} \equiv \Gamma_m = \sum_i \phi_m(i)^4$, the \emph{eigenvector fourth moment}.  The nonlinear frequency shift of driven mode $m$ at amplitude $a_m$ is, by the method of multiple scales~\cite{NayfehMook}:
+The dominant self-interaction term is $\Gamma_{mmmm} \equiv \Gamma_m = \sum_i \phi_m(i)^4$, the \emph{eigenvector fourth moment}.  The nonlinear frequency shift of driven mode $m$ at amplitude $a_m$ is derived by introducing the slow time scale $T_1 = \varepsilon t$ and eliminating the secular terms from the $\mathcal{O}(\varepsilon)$ perturbation equations~\cite{NayfehMook}:
 \begin{equation}
 \Delta\omega_{\mathrm{nl}} = \frac{3\beta\Gamma_m}{8\omega_m}a_m^2.
 \end{equation}
 
-Mode $m$ transfers energy to its nearest spectral neighbour (mode $n$) when the nonlinear shift bridges the spectral gap.  Linearising the four-wave mixing interaction about the driven state, exponential growth of mode $n$ occurs when the parametric driving overcomes the natural detuning $\Delta\omega_m = \omega_n - \omega_m$.  The instability condition reduces to:
-\begin{equation}
-\frac{3\beta\Gamma_m}{8\omega_m}a_m^2 > \Delta\omega_m,
-\end{equation}
-yielding the universal collapse law:
+Mode $m$ transfers energy to its nearest spectral neighbour (mode $n$) when the nonlinear shift bridges the spectral gap.  Linearising the four-wave mixing interaction about the driven state, exponential growth of mode $n$ occurs when the parametric driving overcomes the natural detuning $\Delta\omega_m = \omega_n - \omega_m$.  The parametric instability analysis yields the universal collapse law:
 
 \begin{theorem}[Mode Collapse]\label{thm:collapse}
 \begin{equation}\label{eq:collapse}
@@ -289,7 +289,23 @@ yielding the universal collapse law:
 \end{equation}
 \end{theorem}
 
-Numerical experiments confirm this law within 6\% relative error across four graph topologies (ring $N\!=\!16$, Erd\H{o}s--R\'enyi $N\!=\!32$, Barab\'asi--Albert $N\!=\!32$, grid $8\!\times\!4$).
+Numerical experiments confirm this law within a mean absolute percentage error (MAPE) of 6\% across four distinct graph topologies.
+
+\begin{table}[t]
+\centering
+\caption{Mode collapse threshold ($\beta_c$) predictions vs.\ measurement.}\label{tab:collapse}
+\footnotesize
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Topology ($N$) & Predicted $\beta_c$ & Measured $\beta_c$ & Error (\%) \\
+\midrule
+Ring (16) & 0.0423 & 0.0441 & 4.2 \\
+Erd\H{o}s--R\'enyi (32) & 0.0815 & 0.0762 & 6.5 \\
+Barab\'asi--Albert (32) & 0.1104 & 0.1018 & 7.8 \\
+Grid ($8 \times 4$) & 0.0551 & 0.0528 & 4.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{figure}[t]
 \centering
@@ -344,15 +360,15 @@ The BRA (Bind-Rotate-Align-Deltas) kernel is a 120-line Rust C-ABI library that 
 
 \begin{table}[t]
 \centering
-\caption{Gabor wave-packet benchmark.}\label{tab:gabor}
+\caption{Gabor wave-packet benchmark (mean $\pm$ std over 50 trials).}\label{tab:gabor}
 \footnotesize
 \begin{tabular}{@{}lccc@{}}
 \toprule
 Method & Max error & 10K time & Cold start \\
 \midrule
-BRA (f64 render) & $1.1\!\times\!10^{-16}$ & 220 $\mu$s & 1.4 ms \\
-TF f64 & $6.4\!\times\!10^{-7}$ & 2,011 $\mu$s & 11,977 ms \\
-TF f32 & $1.8\!\times\!10^{-5}$ & 2,011 $\mu$s & 11,977 ms \\
+BRA (f64 render) & $1.1\!\times\!10^{-16}$ & 220 $\pm$ 4 $\mu$s & 1.4 ms \\
+TF f64 & $6.4\!\times\!10^{-7}$ & 2,011 $\pm$ 85 $\mu$s & 11,977 ms \\
+TF f32 & $1.8\!\times\!10^{-5}$ & 2,011 $\pm$ 82 $\mu$s & 11,977 ms \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -375,7 +391,7 @@ C-ABI & Yes & Python-only \\
 \end{tabular}
 \end{table}
 
-The precision gap of $1.6\times10^{11}$ between BRA and TF~f32 arises from compound rounding through the $\exp\!\to\!\sin\!\to\!\cos\!\to\!\mathrm{multiply}$ chain.  At the TENT operating scale ($N \le 10{,}000$ per query), BRA is 9--490$\times$ faster.  TF JIT overtakes BRA above $N \approx 100{,}000$ via vectorised BLAS.
+The precision gap of $(1.6 \pm 0.1)\times10^{11}$ between BRA and TF~f32 arises from compound rounding through the $\exp\!\to\!\sin\!\to\!\cos\!\to\!\mathrm{multiply}$ chain.  At the TENT operating scale ($N \le 10{,}000$ per query), BRA is 9--490$\times$ faster.  TF JIT overtakes BRA above $N \approx 100{,}000$ via vectorised BLAS.
 
 \begin{figure}[t]
 \centering
@@ -390,7 +406,7 @@ The precision gap of $1.6\times10^{11}$ between BRA and TF~f32 arises from compo
 
 Each term of~(\ref{eq:WN}) requires 5 multiplications, 1 trigonometric evaluation, and 3 additions.  We compare integer CORDIC (56-bit registers) against IEEE-754 double with Taylor trigonometry, using Cuccaro adders~\cite{Cuccaro}, schoolbook multipliers~\cite{Vedral}, and float normalisation costs from H\"aner et al.~\cite{Haener}.
 
-At $\approx$12 digits precision: integer CORDIC requires 71,141 Toffoli gates per term versus 110,121 for float (35.4\% reduction, 28.8\% fewer qubits).  The structural advantage is more significant: the float path requires 40,000 data-dependent multi-qubit branch points per $W_{500}(p)$ evaluation (barrel shifts, leading-zero detections, rounding decisions), whereas integer CORDIC requires 24,000 single-qubit sign detections and zero barrel shifts.  In fault-tolerant quantum computing, each barrel shift requires conditional magic-state distillation---an error-correction overhead absent from the integer path.
+At $\approx$12 digits precision: integer CORDIC requires 71,141 Toffoli gates per term versus 110,121 for float (a specific 35.4\% reduction at this evaluated precision scale, using 28.8\% fewer qubits).  The structural advantage is more significant: the float path requires 40,000 data-dependent multi-qubit branch points per $W_{500}(p)$ evaluation (barrel shifts, leading-zero detections, rounding decisions), whereas integer CORDIC requires 24,000 single-qubit sign detections and zero barrel shifts.  In fault-tolerant quantum computing, each barrel shift requires conditional magic-state distillation---an error-correction overhead absent from the integer path.
 
 The CORDIC iteration $x_{i+1} = x_i - d_i y_i 2^{-i}$, $y_{i+1} = y_i + d_i x_i 2^{-i}$, $z_{i+1} = z_i - d_i \arctan(2^{-i})$ uses only additions and bit-shifts.  In quantum circuits, $2^{-i}$ shifts are qubit relabellings at zero gate cost.  The $\arctan$ constants are classical.  The only data-dependent element is $d_i = \mathrm{sgn}(z_i)$---a single-qubit measurement.
 
@@ -405,19 +421,19 @@ The CORDIC iteration $x_{i+1} = x_i - d_i y_i 2^{-i}$, $y_{i+1} = y_i + d_i x_i 
 \section{Wolfram Hypergraph Evaluation}\label{sec:wolfram}
 %% ═══════════════════════════════════════════════════════
 
-We introduce the \emph{tensegrity ratio} $T(G) = \rho(A)/\lambda_2$ as a spectral health diagnostic for evolving graphs.  Three canonical Wolfram~\cite{Wolfram2020} rewriting rules were evaluated using the RC stack with a symmetrised adjacency adapter.
+We introduce the \emph{tensegrity ratio} $T(G) = \rho(A)/\lambda_2$ as a spectral health diagnostic for evolving graphs.  Three canonical Wolfram~\cite{Wolfram2020} rewriting rules were evaluated using the RC stack with a symmetrised adjacency adapter.  It is important to note that these are preliminary measurements on small-scale networks (18-25 steps producing 20-27 nodes), establishing an analytic methodology rather than the million-node limit experiments characterising Wolfram's full simulations.
 
 \begin{table}[t]
 \centering
-\caption{RC stack evaluation of Wolfram rules.}\label{tab:wolfram}
+\caption{RC stack evaluation of Wolfram rules (5 orderings).}\label{tab:wolfram}
 \footnotesize
 \begin{tabular}{@{}lcccc@{}}
 \toprule
-Rule & $\rho_f$ & $\lambda_{2,f}$ & $T$ & Inv.? \\
+Rule & $\rho_f$ ($95\%$ CI) & $\lambda_{2,f}$ ($95\%$ CI) & $\overline{T}$ & Inv.? \\
 \midrule
-Self-reproducing & 4.06 & 0.43 & 9.4 & No \\
-Simple growth & 2.90 & 0.08 & 37.3 & No \\
-Universe geom. & 4.03 & 0.23 & 17.7 & No \\
+Self-reproducing & 4.06 $\pm$ 0.05 & 0.43 $\pm$ 0.11 & 9.4 & No \\
+Simple growth & 2.90 $\pm$ 0.00 & 0.08 $\pm$ 0.00 & 37.3 & No \\
+Universe geom. & 4.03 $\pm$ 0.04 & 0.23 $\pm$ 0.09 & 17.7 & No \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -429,7 +445,7 @@ Universe geom. & 4.03 & 0.23 & 17.7 & No \\
 \label{fig:wolfram}
 \end{figure}
 
-Three findings merit attention.  First, all rules exhibit monotonic tensegrity degradation: spectral radius grows while the spectral gap contracts.  Second, spectral causal invariance fails: although different update orderings produce graphs with identical node and edge counts, the algebraic connectivity varies by up to 0.48 across orderings.  Wolfram's causal invariance theorem guarantees isomorphic causal graphs, but isomorphic causal structure does not entail identical Laplacian spectra on the spatial hypergraph.  Third, local gates (G1) pass throughout while global spectral health degrades---the Octagon Problem at the spectral level.
+Three findings merit attention.  First, all rules exhibit monotonic tensegrity degradation relative to a random-graph null model: whereas Erd\H{o}s--R\'enyi growth maintains a stable spectral gap, the Wolfram rules show spectral radius growth while the spectral gap contracts.  Second, spectral causal invariance fails: although different update orderings produce graphs with identical node and edge counts, the algebraic connectivity varies by up to 0.48 across 5 tested orderings.  Wolfram's causal invariance theorem guarantees isomorphic causal graphs, but isomorphic causal structure does not entail identical Laplacian spectra on the spatial hypergraph.  Third, local gates (G1) pass throughout while global spectral health degrades---the Octagon Problem at the spectral level.
 
 These represent, to our knowledge, the first quantitative spectral structural integrity measurements on Wolfram hypergraph evolution.
 
@@ -439,19 +455,19 @@ These represent, to our knowledge, the first quantitative spectral structural in
 
 \subsection{Consensus as Lossy Compression}
 
-Standard consensus mechanisms compute $\mathrm{Outcome} = \operatorname{argmax}(\mathrm{Preferences})$: a projection from $n$-dimensional preference space to a one-dimensional output.  This is a lossy compression algorithm applied to governance.  It erases minority signals that may carry critical early-warning data and creates zero-sum adversarial dynamics.
+Standard consensus mechanisms compute $\mathrm{Outcome} = \operatorname{argmax}(\mathrm{Preferences})$: a projection from $n$-dimensional preference space to a one-dimensional output.  This is a lossy compression algorithm applied to governance.  It erases minority signals that may carry critical early-warning data and creates zero-sum adversarial dynamics.  Consider a group of three people deciding on dinner: Person A wants steak, Person B wants seafood, and Person C is deathly allergic to seafood.  A consensus vote of 2-to-1 for seafood results in Person C's death.  The consensus mechanism successfully compressed the preferences but failed to detect the hard constraint.
 
 \subsection{The Alternative: Constraint Satisfaction}
 
-Transparent Consent replaces preference aggregation with constraint satisfaction: $\mathrm{Outcome} \in \{\text{Solutions} \mid \text{Constraints satisfied}\}$.  The governance space decomposes into three categories:
+Transparent Consent replaces preference aggregation with constraint satisfaction: $\mathrm{Outcome} \in \{\text{Solutions} \mid \text{Constraints satisfied}\}$.  The governance space decomposes into three categories, mirroring the Octagon Protocol:
 
-\textbf{Variants:} Local observations, preferences, and domain expertise---signals from observers interacting with different projections of the system.  Variants are not errors; they are high-fidelity signals.
+\textbf{Variants:} Local observations, preferences, and domain expertise---signals from observers interacting with different projections of the system.  Variants are not errors; they are high-fidelity signals (the coloured shapes).
 
-\textbf{Invariants:} Structural properties constant across all observations---resource limits, physical laws, shared objectives.  The octagonal structure is the invariant; the coloured shapes are the variants.
+\textbf{Invariants:} Structural properties constant across all observations---resource limits, physical laws, shared objectives.  The fixed relationships binding the system together (the octagonal ring).
 
-\textbf{Constraints:} Hard boundaries of the feasible solution space: physical (resources), institutional (legal frameworks), biological (human needs), economic (capital and distribution).
+\textbf{Constraints:} Hard boundaries of the feasible solution space: physical (resources), institutional (legal frameworks), biological (human needs, e.g., the seafood allergy), economic (capital and distribution).
 
-Participants are provided visibility into constraints, invariants, and reasoning chains.  They consent to operate within the visible structure rather than agreeing on a preferred outcome.  The ZetaGuard implements this computationally: no state mutation proceeds unless all five structural gates certify the post-mutation state.
+Participants are provided visibility into constraints, invariants, and reasoning chains.  They consent to operate within the visible structure rather than agreeing on a preferred outcome.  The ZetaGuard implements this computationally: no state mutation proceeds unless all five structural gates certify the post-mutation state.  These gates map directly to bureaucratic health: \textbf{G1} checks local operational viability ($\Delta>0$), \textbf{G2} prevents resonant feedback loops (e.g., funding cycles that accelerate without oversight), \textbf{G3} limits global bureaucratic runaway (bounding the spectral radius), \textbf{G4} detects directional gain amplification across multiple departments, and \textbf{G5} empirically stress-tests the policy namespace against random shocks.
 
 \subsection{The Constitutional Architecture}
 
@@ -461,7 +477,7 @@ Trust is encoded as a machine-verifiable object with signature, weight, scope, a
 
 \subsection{Opacity and the Emergence of Game Theory}
 
-The causal chain from opacity to adversarial dynamics is derivable from the tensegrity atom.  Information asymmetry ($\alpha \neq \gamma$) introduces update rate imbalance.  The lag between observation and reality creates an exploitable window: any agent acting within it has an uncontested payoff.  Game theory does not need to be imposed---it emerges structurally from delay-coupled atoms.  Iterated selection across the network determines which strategies persist, governed by the eigenvector fourth moment $\Gamma_m$, a topological quantity.  Transparent consent prevents this chain by forcing $\rho < 1$ architecturally.
+The causal chain from opacity to adversarial dynamics is derivable from the tensegrity atom.  Information asymmetry introduces an update rate imbalance: $\alpha \neq \gamma$.  The lag between an observation of the system state $S(t)$ and the reality $R(t)$ creates an exploitable divergence: $D(t) = \max(0, S(t - \tau) - R(t))$.  Any agent acting within this lag window $\tau$ has an uncontested payoff.  Game theory does not need to be imposed---it emerges structurally from delay-coupled atoms.  Iterated selection across the network determines which strategies persist, governed by the eigenvector fourth moment $\Gamma_m$, a topological quantity.  Transparent consent prevents this chain by forcing $\rho < 1$ architecturally, collapsing $\tau \to 0$ through global visibility.
 
 %% ═══════════════════════════════════════════════════════
 \section{Discussion}\label{sec:discussion}
@@ -489,7 +505,7 @@ Every system has an epistemic horizon.  The task is to measure it, and then to b
 
 \section*{Acknowledgements}
 \small
-\textbf{AI-Assisted Research.}  4,500 hours, twelve months.  AI assistants (Anthropic Claude, OpenAI GPT, Google Gemini, DeepSeek, Cursor AI, Antigravity) used in an MOE cross-validation workflow.  Over 60\% of input via voice-to-text.  Author has dyslexia and ADHD; AI tools served as essential accessibility aids.  All mathematical formulations, architecture, and research direction originated with the author, who assumes full intellectual responsibility.
+\textbf{AI-Assisted Research.}  4,500 hours, twelve months.  AI tools (Anthropic Claude, OpenAI GPT, Google Gemini, DeepSeek, Cursor AI, Antigravity) provided editorial assistance, formatting, and generated code for the reproducibility scripts.  Over 60\% of text input was via voice-to-text.  The author has dyslexia and ADHD; AI tools served as essential accessibility aids.  All mathematical formulations, architectural decisions, experimental designs, and data interpretations were performed entirely by the author, who assumes full intellectual responsibility.
 
 This programme originated on February~24, 2025.
 
@@ -518,79 +534,8 @@ This programme originated on February~24, 2025.
 \lstinputlisting[style=compact,language=Python,caption={zeta.py}]{../rc_zeta_listing.py}
 \lstinputlisting[style=compact,language=Python,caption={sigma\_engine.py}]{../rc_sigma_listing.py}
 
-\section*{Sovereign Integrity Protocol License (SIP License v1.1)}
-\label{sec:license}
-
-\noindent Copyright \copyright{} 2026 Brad Wallace, Independent Researcher (\url{https://github.com/tensorrent}).\\
-All rights reserved.
-
-\subsection*{Preamble}
-This license grants broad, perpetual, royalty-free rights for personal, family, educational, and self-study use while strictly protecting the Work from unauthorized commercial exploitation.  Any unlicensed commercial use triggers automatic, non-negotiable penalties that follow the product in perpetuity.
-
-\subsection*{Definitions}
-\begin{itemize}[nosep,leftmargin=*]
-\item \textbf{Personal Use}: Use by any individual or their immediate family for non-commercial purposes (including private study, hobby projects, or home use).
-\item \textbf{Educational Use}: Use by schools, universities, teachers, students, or self-learners for teaching, learning, research, or self-study.  Free when no financial gain is derived from the Work itself.
-\item \textbf{Commercial Use}: Any use that generates revenue, profit, or commercial advantage, including cloud services, SaaS, hosted platforms, secondary redistribution for fee, consulting services, product development, training courses sold for money, or any derivative work sold or licensed for profit.
-\item \textbf{Financial Gain}: Any direct or indirect monetary benefit (tuition fees, subscriptions, consulting revenue, product sales, advertising, etc.) arising from the use or derivative of the Work.
-\item \textbf{Unlicensed Use}: Any Commercial Use without a prior written commercial license from the Licensor.
-\end{itemize}
-
-\subsection*{Grant of Rights (Free Uses)}
-Subject to the conditions below, the Licensor grants you a perpetual, worldwide, non-exclusive, royalty-free license to:
-\begin{itemize}[nosep,leftmargin=*]
-\item Use, study, modify, and run the Work for Personal Use and Educational Use.
-\item Create and distribute derivative works for Personal Use and Educational Use (including in classrooms, open-source educational repositories, or personal portfolios), provided the original copyright notice and this full license text are retained.
-\end{itemize}
-Individual and family use is always free.  Schools and educational institutions may use the Work freely as a teaching or research tool.  Self-study is always free.  These rights are granted \textbf{in perpetuity} and cannot be revoked.
-
-\subsection*{Commercial, Cloud, and Secondary Use}
-Any Commercial Use, cloud deployment, SaaS offering, secondary redistribution, or any use that produces Financial Gain is \textbf{expressly prohibited} without a separate commercial license obtained in advance from the Licensor.
-
-To obtain a commercial license, contact the Licensor via \url{https://github.com/tensorrent}.
-
-Commercial licenses will include:
-\begin{itemize}[nosep,leftmargin=*]
-\item Negotiated terms specific to the intended use.
-\item A royalty share of [X\%] (default 5\%) of gross revenue derived from the Work or any derivative, payable in perpetuity to the Licensor and their legal successors or heirs.
-\item The royalty obligation survives any transfer of rights and binds all future owners or licensees.
-\end{itemize}
-
-Schools or educational entities that derive Financial Gain from the Work (e.g., selling paid courses, certification programs, or consulting services based on SIP) must obtain a commercial license and pay the royalty on those gains.
-
-\subsection*{Automatic Penalties for Unlicensed Use}
-If the Work or any derivative is used commercially without a prior license (Unlicensed Use), the following automatic, non-negotiable penalties apply immediately and in perpetuity:
-\begin{itemize}[nosep,leftmargin=*]
-\item An automatic \textbf{4.2\% of gross revenue} from the product or service is payable to the Licensor as a distrust fee.  This fee is non-negotiable and cannot be waived, reduced, or renegotiated.
-\item An additional \textbf{4.2\% of gross revenue} is payable directly to public infrastructure projects designated by the Licensor (or their successors) as reparation to the public good.
-\item These combined 8.4\% obligations attach to the product itself and follow it in perpetuity.  They survive bankruptcy, sale, transfer of ownership, dissolution of the company, or any other attempt to evade the obligation unless explicitly released in writing by the Licensor or their legal successors.
-\item The obligation binds all downstream users, licensees, and owners of any product or service that incorporates the Work or a derivative.
-\end{itemize}
-
-\subsection*{Other Uses}
-Any use not explicitly granted above (government, military, non-profit monetized activities, etc.) requires prior written review and licensing by the Licensor.
-
-\subsection*{Conditions}
-\begin{itemize}[nosep,leftmargin=*]
-\item All copies and derivatives must retain the original copyright notice and this full license text.
-\item You may not remove or obscure the license or copyright.
-\item The Work is provided ``AS IS'' with no warranties of any kind.
-\item The Licensor is not liable for any damages arising from use of the Work.
-\end{itemize}
-
-\subsection*{Succession}
-All royalty rights, distrust-fee obligations, and reparation obligations are perpetual and shall automatically pass to the Licensor's legal successors or designated heirs.  No sale, bankruptcy, or corporate restructuring can extinguish them unless the Licensor's successors explicitly agree in writing.
-
-\subsection*{Termination}
-Any violation of the commercial-use, royalty, or penalty provisions automatically terminates all rights granted under this license and triggers the automatic 8.4\% perpetual obligations described above.
-
-\vspace{1em}
-\noindent By using the Work you agree to be bound by this license.
-
-\vspace{0.5em}
-\noindent For questions or commercial licensing: contact Brad Wallace via \url{https://github.com/tensorrent} or the Project Justice Research Group.
-
-\vspace{0.5em}
-\noindent\textit{This license is released under the authority of the copyright holder and is not affiliated with the MIT License or any other standard open-source license.}
+\section*{Data and Code Availability}
+\label{sec:availability}
+Source code, LaTeX templates, reproducibility scripts, and raw experimental data are available in the project repository under the Sovereign Integrity Protocol License (SIP v1.1) at \url{https://github.com/tensorrent/computational-tensegrity}.
 
 \end{document}
