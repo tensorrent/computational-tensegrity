@@ -19,7 +19,7 @@ import os
 from decimal import Decimal, getcontext
 getcontext().prec = 100
 
-OUT = "/home/claude/paper_assets"
+OUT = "scripts"
 os.makedirs(OUT, exist_ok=True)
 
 LOG = []

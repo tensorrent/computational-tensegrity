@@ -11,7 +11,7 @@ from matplotlib.patches import FancyArrowPatch
 from scipy.integrate import solve_ivp
 import os
 
-OUT = "/home/claude/paper_assets"
+OUT = "figures"
 plt.rcParams.update({
     'font.size': 9, 'figure.dpi': 150, 'savefig.dpi': 150,
     'axes.grid': True, 'grid.alpha': 0.2, 'font.family': 'serif',

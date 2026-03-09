@@ -379,7 +379,7 @@ def main():
     for label, evals in all_data.items():
         save_data[label] = [{k: v for k, v in e.items() if k != "eigs"} for e in evals]
     
-    with open("/home/claude/paper_assets/wolfram_data.json", "w") as f:
+    with open("scripts/wolfram_data.json", "w") as f:
         json.dump(save_data, f, indent=2)
     
     print(f"\nData saved to wolfram_data.json")
