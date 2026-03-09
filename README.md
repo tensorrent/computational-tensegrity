@@ -4,6 +4,8 @@
 
 Brad Wallace · Independent Researcher · [TensorRent](https://github.com/tensorrent)
 
+[![Build Paper](https://github.com/tensorrent/computational-tensegrity/actions/workflows/build-paper.yml/badge.svg)](https://github.com/tensorrent/computational-tensegrity/actions/workflows/build-paper.yml)
+
 ---
 
 ## Overview
@@ -59,17 +61,16 @@ python scripts/wolfram_rc_eval.py  # Wolfram hypergraph evaluation
 
 ## Compiling the Paper
 
+You can compile the LaTeX paper automatically by running the Makefile.
+
 ```bash
-cd paper
-# Copy figures alongside .tex
-cp ../figures/*.pdf .
-# Also copy code listings for appendix
-cp ../src/zeta.py ../rc_zeta_listing.py
-cp ../src/sigma_engine.py ../rc_sigma_listing.py
-cp ../src/main.py ../rc_main_listing.py
-pdflatex Computational_Tensegrity_Wallace_2026.tex
-pdflatex Computational_Tensegrity_Wallace_2026.tex
-pdflatex Computational_Tensegrity_Wallace_2026.tex
+make paper
+```
+
+To run the reproducibility pipeline end-to-end (which regenerates all source data, rebuilds the figures, and compiles the PDF), run:
+
+```bash
+make all
 ```
 
 ## The Octagon Problem
@@ -90,7 +91,7 @@ See [LICENSE](LICENSE) for the full text.
 
 ## Contact
 
-Brad Wallace · Wellthatshandy@gmail.com · [github.com/tensorrent](https://github.com/tensorrent)
+Brad Wallace · <Wellthatshandy@gmail.com> · [github.com/tensorrent](https://github.com/tensorrent)
 
 ## Acknowledgements
 
